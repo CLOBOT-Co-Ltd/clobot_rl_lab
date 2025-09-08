@@ -23,12 +23,63 @@ Currently supports Unitree **Go2**, **H1** and **G1-29dof** robots.
 ## Installation
 
 - Install Isaac Lab by following the [installation guide](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html).
+- Install Isaac Sim 5.0.0
+  ```bash
+  conda create -n clobot_rl_isaaclab python=3.11
+  conda activate clobot_rl_isaaclab
+  ```
+  - Before installing Isaac Sim, ensure the latest pip version is installed. To update pip, run
+  ```bash
+  pip install --upgrade pip
+  ```
+
+  - Next, install a CUDA-enabled PyTorch 2.7.0 build. (RTX 50 Series: cu128)
+  ```bash
+  pip install torch==2.7.0 torchvision==0.22.0 --index-url https://download.pytorch.org/whl/cu128
+  ```
+
+  - Then, install the Isaac Sim packages.
+  ```bash
+  pip install "isaacsim[all,extscache]==5.0.0" --extra-index-url https://pypi.nvidia.com
+  ```
+  - Check Isaacsim
+  ```bash
+  isaacsim
+  ```
+
+- Install Isaac Lab
+  - Clone the Isaac Lab
+  ```bash
+  git clone https://github.com/isaac-sim/IsaacLab.git
+  ```
+
+  - Install dependencies using apt
+  ```bash
+  sudo apt install cmake build-essential
+  ```
+
+  - Install isaaclab
+  ```bash
+  cd IsaacLab
+  ./isaaclab.sh --install # or "./isaaclab.sh -i"
+  ```
+
+  - Check Isaaclab
+  ```bash
+  # Option 1: Using the isaaclab.sh executable
+  # note: this works for both the bundled python and the virtual environment
+  ./isaaclab.sh -p scripts/tutorials/00_sim/create_empty.py
+
+  # Option 2: Using python in your virtual environment
+  python scripts/tutorials/00_sim/create_empty.py
+  ```
+
 - Install the Unitree RL IsaacLab standalone environments.
 
   - Clone or copy this repository separately from the Isaac Lab installation (i.e. outside the `IsaacLab` directory):
 
     ```bash
-    git clone https://github.com/unitreerobotics/unitree_rl_lab.git
+    git clone https://github.com/CLOBOT-Co-Ltd/clobot_rl_lab.git
     ```
   - Use a python interpreter that has Isaac Lab installed, install the library in editable mode using:
 
@@ -58,12 +109,20 @@ Currently supports Unitree **Go2**, **H1** and **G1-29dof** robots.
   - Running a task:
 
     ```bash
+    # Unitree G1
     python scripts/rsl_rl/train.py --headless --task Unitree-G1-29dof-Velocity
+
+    # Unitree H1-2
+    python scripts/rsl_rl/train.py --headless --task Unitree-H1-2-Velocity
     ```
   - Inference with a trained agent:
 
     ```bash
+    # Unitree G1
     python scripts/rsl_rl/play.py --task Unitree-G1-29dof-Velocity
+
+    # Unitree H1-2
+    python scripts/rsl_rl/train.py --headless --task Unitree-H1-2-Velocity
     ```
 
 ## Deploy
