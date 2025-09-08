@@ -122,7 +122,8 @@ Currently supports Unitree **Go2**, **H1** and **G1-29dof** robots.
     python scripts/rsl_rl/play.py --task Unitree-G1-29dof-Velocity
 
     # Unitree H1-2
-    python scripts/rsl_rl/train.py --task Unitree-H1-2-Velocity
+    python scripts/rsl_rl/play.py --task Unitree-H1-2-Velocity
+    python scripts/rsl_rl/play.py --task Unitree-H1-2-Velocity --checkpoint logs/rsl_rl/unitree_h1_2_velocity/2025-09-08_15-20-01/model.pt
     ```
 
 ## Deploy
